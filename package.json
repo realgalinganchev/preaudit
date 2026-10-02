@@ -1,0 +1,22 @@
+{
+  "name": "preaudit",
+  "version": "0.1.0",
+  "description": "Pre-audit pipeline for Foundry projects: build, tests, coverage, static analysis, mutation and symbolic checks, merged into one report.",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "preaudit": "src/cli.ts"
+  },
+  "scripts": {
+    "preaudit": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,3 @@
+[submodule "vendor/pashov-skills"]
+	path = vendor/pashov-skills
+	url = https://github.com/pashov/skills
