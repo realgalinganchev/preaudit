@@ -90,7 +90,7 @@ How the known issues were found:
 | Winner contract without `receive`/`fallback` blocks the raffle | fuzz: `selectWinner` reverts when the players are contracts that reject ETH/NFTs |
 | `selectWinner` counts refunded seats, so recorded fees exceed the balance | invariant: enter, enter, refund, draw → 1.2 ETH of fees recorded against 0.2 ETH held |
 
-All nine, with the caveat that matters for selling this: the harness properties were written by someone who knew what to look for. On a real engagement the properties come from reading the code and the protocol's intent, which is the part of the work tools don't do.
+All nine, with one caveat: the harness properties were written by someone who already knew what to look for. On an unfamiliar codebase the properties come from reading the code and the protocol's intent, which is the part of the work tools don't do.
 
 Surviving mutants worth a look: deleting `require(playerAddress != address(0))` in `refund` (the double-refund guard), deleting `totalFees = 0` and `require(success)` in `withdrawFees`, and deleting the assignment in `changeFeeAddress` all leave every test passing. So the parts of the contract that move money are barely tested, which is exactly where the reentrancy bug lives.
 
@@ -104,3 +104,7 @@ Slither also flags `arbitrary-send-eth` on `withdrawFees`, which looks like a fa
 - **Halmos and invariant tests.** Halmos also runs `invariant_*` tests symbolically, which doesn't terminate on a real handler. The stage only points Halmos at contracts that define `check_*` properties.
 - **Invariant counterexamples on first discovery.** On the run that first breaks an invariant, `forge test --json` reports the counterexample as `null` and only saves the call sequence to its cache. The fuzz stage replays failed invariants once to recover the sequence.
 - **Old forge-std assertion messages.** DSTest-style asserts (forge-std from 2023 and earlier) report their message in `decoded_logs`, which `forge test --json` only fills at `-vv`.
+
+## License
+
+MIT, see [LICENSE](LICENSE). The vendored [pashov/skills](https://github.com/pashov/skills) submodule keeps its own MIT license.

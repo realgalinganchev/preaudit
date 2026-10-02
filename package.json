@@ -2,6 +2,7 @@
   "name": "preaudit",
   "version": "0.1.0",
   "description": "Pre-audit pipeline for Foundry projects: build, tests, coverage, static analysis, mutation and symbolic checks, merged into one report.",
+  "license": "MIT",
   "type": "module",
   "private": true,
   "bin": {
