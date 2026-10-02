@@ -29,6 +29,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          submodules: true # vendor/pashov-skills
+
+      # Pashov Audit Group's skills (x-ray, solidity-auditor, fizz), from the pinned submodule,
+      # installed as project skills so @claude can use them. No extra tool permissions are
+      # granted here: the skills' scripted steps need Bash, which this workflow doesn't allow.
+      - name: Install Pashov skills
+        run: node scripts/install-skills.mjs
 
       - name: Run Claude Code
         id: claude
