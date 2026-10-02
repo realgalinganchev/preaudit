@@ -20,7 +20,6 @@ for (const skill of SKILLS) {
   cpSync(path.join(vendor, skill), dest, { recursive: true });
   // The skills' Node scripts are CommonJS, but this repo's package.json says "type": "module",
   // which Node would apply to them too. A package.json in the skill folder restores CommonJS.
-  writeFileSync(path.join(dest, "package.json"), '{ "type": "commonjs" }
-');
+  writeFileSync(path.join(dest, "package.json"), JSON.stringify({ type: "commonjs" }) + "\n");
   console.log(`installed ${skill} -> .claude/skills/${skill}`);
 }
