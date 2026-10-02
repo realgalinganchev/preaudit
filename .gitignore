@@ -2,3 +2,7 @@ node_modules/
 .venv/
 reports/
 *.log
+# Installed copies of vendor/pashov-skills (npm run skills:install); the submodule is the source
+.claude/skills/x-ray/
+.claude/skills/solidity-auditor/
+.claude/skills/fizz/

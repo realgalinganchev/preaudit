@@ -10,7 +10,8 @@
   },
   "scripts": {
     "preaudit": "tsx src/cli.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "skills:install": "node scripts/install-skills.mjs"
   },
   "engines": {
     "node": ">=20"
